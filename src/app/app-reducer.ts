@@ -18,9 +18,13 @@ const appReducer = createSlice({
   name: 'appReducer',
   initialState: {
     members: [],
-    isAdmin: false,
+    isAdminAuth: false,
   },
-  reducers: {},
+  reducers: {
+    setAdminAuth(state, action) {
+      state.isAdminAuth = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getMembers.fulfilled, (state, action) => {
       state.members = action.payload
@@ -29,4 +33,5 @@ const appReducer = createSlice({
 })
 
 export default appReducer.reducer
+export const { setAdminAuth } = appReducer.actions
 export { getMembers }

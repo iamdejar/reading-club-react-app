@@ -4,6 +4,8 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'app/hooks'
+import { setAdminAuth } from 'app/app-reducer'
 
 interface formState {
   login: boolean | undefined
@@ -15,6 +17,7 @@ const initValidState: formState = {
 }
 
 export default function Login() {
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [isInputValid, setInputValid] = useState(initValidState)
 
@@ -34,6 +37,7 @@ export default function Login() {
       }
     } else {
       window.sessionStorage.setItem('auth-key', '1234')
+      dispatch(setAdminAuth(true))
       navigate('/admin')
     }
 
