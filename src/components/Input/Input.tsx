@@ -6,20 +6,24 @@ interface Props {
   type: string
   label: string
   error: boolean | undefined
+  value: string
+  onChange: Function
 }
 
-export default function Input({ name, type, label, error }: Props) {
+function Input({ name, type, label, error, value, onChange }: Props) {
   return (
     <TextField
       margin="normal"
-      required
       fullWidth
       name={name}
       label={label}
       type={type}
       id={type}
-      autoComplete="current-password"
       error={error}
+      value={value}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
     />
   )
 }
+
+export default Input

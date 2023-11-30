@@ -20,19 +20,19 @@ export default function Login() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const [isInputValid, setInputValid] = useState(initValidState)
+  const [inputValues, setInputValues] = useState({
+    login: '',
+    password: '',
+  })
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
 
-    const login = String(data.get('login'))
-    const pass = String(data.get('password'))
-
-    if (login?.length === 0 || pass?.length === 0) {
-      if (login?.length === 0) {
+    if (inputValues.login?.length === 0 || inputValues.password?.length === 0) {
+      if (inputValues.login?.length === 0) {
         setInputValid({ ...isInputValid, login: true })
       }
-      if (pass?.length === 0) {
+      if (inputValues.password?.length === 0) {
         setInputValid({ ...isInputValid, pass: true })
       }
     } else {
@@ -40,11 +40,6 @@ export default function Login() {
       dispatch(setAdminAuth(true))
       navigate('/admin')
     }
-
-    console.log({
-      login: data.get('login'),
-      password: data.get('password'),
-    })
   }
 
   return (
@@ -56,12 +51,20 @@ export default function Login() {
           type="text"
           label="Login"
           error={isInputValid.login}
+          value={inputValues.login}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setInputValues({ ...inputValues, login: e.target.value })
+          }
         />
         <Input
           name="password"
           type="password"
           label="Password"
           error={isInputValid.pass}
+          value={inputValues.password}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setInputValues({ ...inputValues, password: e.target.value })
+          }
         />
         <Button
           type="submit"

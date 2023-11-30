@@ -13,6 +13,8 @@ export default function Admin() {
     if (!authKey) {
       dispatch(setAdminAuth(false))
       navigate('/404')
+    } else {
+      dispatch(setAdminAuth(true))
     }
   }, [])
 

@@ -1,6 +1,6 @@
 export interface Member {
-  id: number
-  img: string
+  id: string
+  img?: string
   name: string
   date: string
   tel?: string
