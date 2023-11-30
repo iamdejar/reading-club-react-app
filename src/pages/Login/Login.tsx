@@ -33,6 +33,7 @@ export default function Login() {
         setInputValid({ ...isInputValid, pass: true })
       }
     } else {
+      window.sessionStorage.setItem('auth-key', '1234')
       navigate('/admin')
     }
 

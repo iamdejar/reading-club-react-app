@@ -5,9 +5,10 @@ import Button from '@mui/material/Button'
 export default function Header() {
   return (
     <header className={styles.body}>
-      <div>Logo</div>
-      {/* <Link to={'/login'}>Login</Link> */}
-      <Button component={Link} to="/login">
+      <Button component={Link} to="/">
+        Logo
+      </Button>
+      <Button variant="contained" component={Link} to="/login">
         Login
       </Button>
     </header>
