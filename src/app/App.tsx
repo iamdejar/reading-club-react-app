@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-        <main className="container">
+        <main className="main">
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
