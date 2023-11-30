@@ -5,9 +5,10 @@ interface Props {
   name: string
   type: string
   label: string
+  error: boolean | undefined
 }
 
-export default function Input({ name, type, label }: Props) {
+export default function Input({ name, type, label, error }: Props) {
   return (
     <TextField
       margin="normal"
@@ -18,6 +19,7 @@ export default function Input({ name, type, label }: Props) {
       type={type}
       id={type}
       autoComplete="current-password"
+      error={error}
     />
   )
 }

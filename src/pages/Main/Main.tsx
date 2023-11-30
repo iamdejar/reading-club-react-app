@@ -15,7 +15,7 @@ export default function Main() {
 
   return (
     <>
-      <h1>Reading Club Members</h1>
+      <h1 className={styles.title}>Reading Club Members</h1>
       <div className={styles.table}>
         {members.map((item: Member) => (
           <MemberCard key={item.id} info={item} />

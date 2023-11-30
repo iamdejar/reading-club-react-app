@@ -1,3 +1,10 @@
+.title {
+  margin-top: 50px;
+
+  font-size: 50px;
+  text-align: center;
+}
+
 .table {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
