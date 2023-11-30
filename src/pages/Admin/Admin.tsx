@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import styles from './Admin.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'app/hooks'
 import { setAdminAuth } from 'app/app-reducer'
+import Main from 'pages/Main/Main'
 
 export default function Admin() {
   const dispatch = useAppDispatch()
@@ -16,5 +16,5 @@ export default function Admin() {
     }
   }, [])
 
-  return <div>Admin</div>
+  return <Main />
 }

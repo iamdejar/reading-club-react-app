@@ -5,6 +5,8 @@
       "img": "/assets/member-0.webp",
       "name": "Mary Margo",
       "date": "21.10.2001",
+      "tel": "0585889567",
+      "mail": "me@me.com",
       "books": ["book 1", "book 2"]
     },
     {
@@ -12,6 +14,8 @@
       "img": "/assets/member-1.webp",
       "name": "Ann Samy",
       "date": "12.05.2002",
+      "tel": "0585889567",
+      "mail": "me@me.com",
       "books": ["book 1", "book 2"]
     },
     {
@@ -19,6 +23,8 @@
       "img": "/assets/member-2.webp",
       "name": "Sam Kilman",
       "date": "17.10.2002",
+      "tel": "0585889567",
+      "mail": "me@me.com",
       "books": ["book 1", "book 2"]
     },
     {
@@ -26,6 +32,8 @@
       "img": "/assets/member-3.webp",
       "name": "Alex Bilbo",
       "date": "21.10.2001",
+      "tel": "0585889567",
+      "mail": "me@me.com",
       "books": ["book 1", "book 2"]
     },
     {
@@ -33,6 +41,8 @@
       "img": "/assets/member-4.webp",
       "name": "Samanta Fisher",
       "date": "12.05.2002",
+      "tel": "0585889567",
+      "mail": "me@me.com",
       "books": ["book 1", "book 2"]
     },
     {
@@ -40,6 +50,8 @@
       "img": "/assets/member-5.jpeg",
       "name": "Bob Dilan",
       "date": "17.10.2002",
+      "tel": "0585889567",
+      "mail": "me@me.com",
       "books": ["book 1", "book 2"]
     }
   ],
