@@ -6,7 +6,7 @@ import Login from 'pages/Login/Login'
 import Admin from 'pages/Admin/Admin'
 import Header from 'components/Header/Header'
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
@@ -22,5 +22,3 @@ function App() {
     </BrowserRouter>
   )
 }
-
-export default App

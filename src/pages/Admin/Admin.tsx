@@ -1,7 +1,5 @@
 import styles from './Admin.module.scss'
 
-function Admin() {
+export default function Admin() {
   return <div>Admin</div>
 }
-
-export default Admin
