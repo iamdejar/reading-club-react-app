@@ -5,14 +5,14 @@ import Box from '@mui/material/Box'
 import Backdrop from '@mui/material/Backdrop'
 import Input from 'components/Input/Input'
 import Button from '@mui/material/Button'
-import { useAppDispatch } from 'app/hooks'
-import { addMember } from 'app/app-reducer'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { addMember, editMember } from 'app/app-reducer'
 import { Member } from 'components/MemberCard/types'
 import dayjs, { Dayjs } from 'dayjs'
 import { nanoid } from 'nanoid'
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface Props {
   isModalOpen: boolean
@@ -33,6 +33,7 @@ const style = {
 
 function MemberFormModal({ isModalOpen, setModalOpen }: Props) {
   const dispatch = useAppDispatch()
+  const memberInModal = useAppSelector((state) => state.memberInModal)
   const [entryDate, setEntryDate] = React.useState<Dayjs | null>(dayjs())
   const [inputValues, setInputValues] = useState({
     name: '',
@@ -49,19 +50,41 @@ function MemberFormModal({ isModalOpen, setModalOpen }: Props) {
     const books = String(inputValues.books)
     const booksArr = books.split(',').map((el) => el.trim())
 
-    const newCard: Member = {
-      id: nanoid(10),
-      img: '/assets/member-default.jpeg',
+    let memberCard: Member = {
+      id: '',
       name: inputValues.name,
       date: dayjs(date).format('DD.MM.YYYY'),
       tel: inputValues.tel,
       mail: inputValues.mail,
       books: booksArr,
     }
+    if (memberInModal.id === null) {
+      memberCard = {
+        ...memberCard,
+        id: nanoid(10),
+        img: '/assets/member-default.jpeg',
+      }
 
-    dispatch(addMember(newCard))
+      dispatch(addMember(memberCard))
+    } else {
+      memberCard = {
+        ...memberCard,
+        id: memberInModal.id,
+        img: memberInModal.img,
+      }
+
+      dispatch(editMember(memberCard))
+    }
+
     setModalOpen(false)
   }
+
+  useEffect(() => {
+    if (memberInModal.id !== null) {
+      // @ts-ignore
+      setInputValues(memberInModal)
+    }
+  }, [memberInModal.id])
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

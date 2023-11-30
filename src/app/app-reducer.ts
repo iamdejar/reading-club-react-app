@@ -31,11 +31,28 @@ const deleteMember = createAsyncThunk(
   }
 )
 const addMember = createAsyncThunk(
-  'appReducer/deleteMember',
+  'appReducer/addMember',
   async (data: Member) => {
     await axInstance({
       method: 'post',
       url: `/members`,
+      data: data,
+    }).then((res) => res.data)
+
+    const members = await axInstance({
+      method: 'get',
+      url: '/members',
+    }).then((res) => res.data)
+
+    return members
+  }
+)
+const editMember = createAsyncThunk(
+  'appReducer/editMember',
+  async (data: Member) => {
+    await axInstance({
+      method: 'patch',
+      url: `/members/${data.id}`,
       data: data,
     }).then((res) => res.data)
 
@@ -53,7 +70,10 @@ const appReducer = createSlice({
   initialState: {
     members: [],
     isAdminAuth: false,
-    memberInModal: null,
+    memberInModal: {
+      id: null,
+      img: '',
+    },
   },
   reducers: {
     setAdminAuth(state, action) {
@@ -71,9 +91,15 @@ const appReducer = createSlice({
       .addCase(deleteMember.fulfilled, (state, action) => {
         state.members = action.payload
       })
+      .addCase(addMember.fulfilled, (state, action) => {
+        state.members = action.payload
+      })
+      .addCase(editMember.fulfilled, (state, action) => {
+        state.members = action.payload
+      })
   },
 })
 
 export default appReducer.reducer
 export const { setAdminAuth, setMemberInModal } = appReducer.actions
-export { getMembers, deleteMember, addMember }
+export { getMembers, deleteMember, addMember, editMember }

@@ -37,7 +37,7 @@ export default function Main() {
 
       <div className={styles.table}>
         {members.map((item: Member) => (
-          <MemberCard key={item.id} info={item} />
+          <MemberCard key={item.id} info={item} onEdit={setModalOpen} />
         ))}
       </div>
 

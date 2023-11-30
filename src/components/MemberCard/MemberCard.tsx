@@ -3,13 +3,14 @@ import { Member } from './types'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import { deleteMember } from 'app/app-reducer'
+import { deleteMember, setMemberInModal } from 'app/app-reducer'
 
 interface Props {
   info: Member
+  onEdit: Function
 }
 
-export default function MemberCard({ info }: Props) {
+export default function MemberCard({ info, onEdit }: Props) {
   const dispatch = useAppDispatch()
   const isAdminAuth = useAppSelector((state) => state.isAdminAuth)
 
@@ -26,7 +27,12 @@ export default function MemberCard({ info }: Props) {
         </div>
         {isAdminAuth && (
           <div className={styles.buttons}>
-            <button>
+            <button
+              onClick={() => {
+                onEdit(true)
+                dispatch(setMemberInModal(info))
+              }}
+            >
               <EditOutlinedIcon />
             </button>
             <button onClick={() => dispatch(deleteMember(info.id))}>
