@@ -10,6 +10,7 @@ export default function Header() {
   const isAdminAuth = useAppSelector((state) => state.isAdminAuth)
 
   function logOut() {
+    window.sessionStorage.removeItem('auth-key')
     dispatch(setAdminAuth(false))
     navigate('/')
   }
