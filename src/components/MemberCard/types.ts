@@ -7,11 +7,3 @@ export interface Member {
   mail?: string
   books: Array<string>
 }
-
-export interface MemberEditableFields {
-  name: string
-  date: string
-  tel?: string
-  mail?: string
-  books: Array<string>
-}
